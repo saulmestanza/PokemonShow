@@ -24,17 +24,15 @@ class PokemonShowBloc extends Bloc<PokemonShowEvent, PokemonShowState> {
     on<SearchShowsEvents>((event, emit) async {
       emit(ShowsLoadingState());
       try {
-        if (event.searchText == null) {
+        if (event.searchText == null || event.searchText!.isEmpty) {
           emit(ShowsLoadedState(shows));
           return;
         }
-        final filteredShows = event.searchText!.isEmpty
-            ? shows
-            : shows
-                .where((show) => show.show.name
-                    .toLowerCase()
-                    .contains(event.searchText!.toLowerCase()))
-                .toList();
+        final filteredShows = shows
+            .where((show) => show.show.name
+                .toLowerCase()
+                .contains(event.searchText!.toLowerCase()))
+            .toList();
         emit(ShowsLoadedState(filteredShows));
       } catch (e) {
         emit(ShowsErrorState(e.toString()));

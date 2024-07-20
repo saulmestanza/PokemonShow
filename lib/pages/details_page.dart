@@ -5,6 +5,7 @@ import 'package:pokemon_show/bloc/pokemon_show/pokemon_bloc.dart';
 import 'package:pokemon_show/bloc/pokemon_show/pokemon_events.dart';
 import 'package:pokemon_show/bloc/pokemon_show/pokemon_states.dart';
 import 'package:pokemon_show/repositories/pokemon_show_repository.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../models/details_show_model.dart';
 import '../widgets/app_bar_widget.dart';
@@ -24,6 +25,7 @@ class DetailsPage extends StatefulWidget {
 class _DetailsPageState extends State<DetailsPage> {
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return BlocProvider(
       create: (context) => PokemonShowBloc(
         PokemonShowRepository(),
@@ -57,9 +59,9 @@ class _DetailsPageState extends State<DetailsPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
-                              "Summary:",
-                              style: TextStyle(
+                            Text(
+                              l10n.summaryText,
+                              style: const TextStyle(
                                 fontSize: 25,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
@@ -73,9 +75,9 @@ class _DetailsPageState extends State<DetailsPage> {
                               ),
                             ),
                             const SizedBox(height: 15),
-                            const Text(
-                              "Genres:",
-                              style: TextStyle(
+                            Text(
+                              l10n.genresText,
+                              style: const TextStyle(
                                 fontSize: 25,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
@@ -95,25 +97,25 @@ class _DetailsPageState extends State<DetailsPage> {
                               ),
                             ),
                             const SizedBox(height: 15),
-                            const Text(
-                              "Network:",
-                              style: TextStyle(
+                            Text(
+                              l10n.networkText,
+                              style: const TextStyle(
                                 fontSize: 25,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                               ),
                             ),
                             Text(
-                              "${show?.network?.name} - Runtime: ${show?.runtime} minutes.",
+                              "${show?.network?.name} - ${l10n.runtimeText} ${show?.runtime} ${l10n.minutesText}.",
                               style: const TextStyle(
                                 fontSize: 18,
                                 color: Colors.black,
                               ),
                             ),
                             const SizedBox(height: 15),
-                            const Text(
-                              "Aired:",
-                              style: TextStyle(
+                            Text(
+                              l10n.airedText,
+                              style: const TextStyle(
                                 fontSize: 25,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
@@ -129,9 +131,9 @@ class _DetailsPageState extends State<DetailsPage> {
                             const SizedBox(height: 15),
                             Row(
                               children: [
-                                const Text(
-                                  "Rating:",
-                                  style: TextStyle(
+                                Text(
+                                  l10n.ratingText,
+                                  style: const TextStyle(
                                     fontSize: 25,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black,

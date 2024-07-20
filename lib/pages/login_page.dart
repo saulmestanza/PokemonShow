@@ -4,6 +4,7 @@ import 'package:pokemon_show/pages/home_page.dart';
 import '../bloc/login/login_bloc.dart';
 import '../bloc/login/login_event.dart';
 import '../bloc/login/login_state.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -19,9 +20,10 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pokemon show'),
+        title: Text("${l10n?.appTitle}"),
         backgroundColor: Colors.redAccent,
       ),
       body: BlocProvider(
@@ -50,21 +52,23 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   TextFormField(
                     controller: _emailController,
-                    decoration: const InputDecoration(labelText: 'Email'),
+                    decoration:
+                        InputDecoration(labelText: "${l10n?.emailText}"),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
+                        return "${l10n?.emailTextError}";
                       }
                       return null;
                     },
                   ),
                   TextFormField(
                     controller: _passwordController,
-                    decoration: const InputDecoration(labelText: 'Password'),
+                    decoration:
+                        InputDecoration(labelText: "${l10n?.passwordText}"),
                     obscureText: true,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter some text';
+                        return "${l10n?.passwordTextError}";
                       }
                       return null;
                     },
@@ -93,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                                   );
                             }
                           },
-                          child: const Text('Login'),
+                          child: Text("${l10n?.loginText}"),
                         ),
                       );
                     },

@@ -8,7 +8,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<LoginSubmitted>((event, emit) async {
       emit(LoginLoading());
       try {
-        await Future.delayed(const Duration(seconds: 2));
         if (event.email == "admin" && event.password == "admin") {
           SharedPreferences prefs = await SharedPreferences.getInstance();
           await prefs.setBool('isLoggedIn', true);
@@ -17,7 +16,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           emit(LoginFailure(error: "Wrong credentials, please try again"));
         }
       } catch (e) {
-        emit(LoginFailure(error: e.toString()));
+        emit(LoginFailure(error: "Wrong credentials, please try again"));
       }
     });
 

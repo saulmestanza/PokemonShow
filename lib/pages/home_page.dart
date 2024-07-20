@@ -6,6 +6,7 @@ import 'package:pokemon_show/bloc/pokemon_show/pokemon_states.dart';
 import 'package:pokemon_show/models/pokemon_show_model.dart';
 import 'package:pokemon_show/pages/details_page.dart';
 import 'package:pokemon_show/repositories/pokemon_show_repository.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,6 +21,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return BlocProvider(
       create: (context) => PokemonShowBloc(
         PokemonShowRepository(),
@@ -29,10 +31,7 @@ class _HomePageState extends State<HomePage> {
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(16),
-            child: BlocConsumer<PokemonShowBloc, PokemonShowState>(
-              listener: (context, state) {
-                return;
-              },
+            child: BlocBuilder<PokemonShowBloc, PokemonShowState>(
               builder: (context, state) {
                 if (state is ShowsInitialState ||
                     state is ShowsLoadingState && _shows.isEmpty) {
@@ -60,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                         focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black),
                         ),
-                        hintText: "Buscar",
+                        hintText: l10n.searchText,
                         hintStyle: const TextStyle(
                           color: Colors.black,
                         ),
@@ -87,11 +86,10 @@ class _HomePageState extends State<HomePage> {
                     ),
                     const SizedBox(height: 10),
                     if (_shows.isEmpty) ...[
-                      const Card(
+                      Card(
                         child: ListTile(
-                          leading: Icon(Icons.search_off),
-                          title:
-                              Text("No se encontro un show con ese parametro"),
+                          leading: const Icon(Icons.search_off),
+                          title: Text(l10n.searchErrorText),
                         ),
                       ),
                     ],

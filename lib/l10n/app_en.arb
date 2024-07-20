@@ -1,0 +1,20 @@
+{
+    "appTitle": "Pokemon show",
+    "searchText": "Search",
+    "searchErrorText": "There were no items found with this text",
+    "summaryText": "Summary: ",
+    "genresText": "Genres: ",
+    "networkText": "Network: ",
+    "runtimeText": "Runtime: ",
+    "minutesText": "minutes",
+    "airedText": "Aired: ",
+    "ratingText": "Rating: ",
+    "loginText": "Login",
+    "emailText": "Email",
+    "passwordText": "Password",
+    "emailTextError": "Enter a correct email",
+    "passwordTextError": "Enter a correct password",
+    "loginSuccessfulText": "Login Successful",
+    "loginFailedText": "Login Failed"
+  }
+  
