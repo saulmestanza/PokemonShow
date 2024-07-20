@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pokemon_show/bloc/pokemon_show/pokemon_bloc.dart';
 import 'package:pokemon_show/bloc/pokemon_show/pokemon_events.dart';
@@ -26,6 +25,7 @@ class _HomePageState extends State<HomePage> {
         PokemonShowRepository(),
       )..add(LoadShowsEvent()),
       child: Scaffold(
+        backgroundColor: Colors.redAccent,
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -42,15 +42,15 @@ class _HomePageState extends State<HomePage> {
                 } else if (state is ShowsLoadedState) {
                   _shows = [];
                   _shows.addAll(state.shows);
-                  BlocProvider.of<PokemonShowBloc>(context).isFetching = false;
+                  context.read<PokemonShowBloc>().isFetching = false;
                 }
                 return Column(
                   children: [
                     TextField(
                       onChanged: (text) {
-                        BlocProvider.of<PokemonShowBloc>(context).add(
-                          SearchShowsEvents(searchText: text),
-                        );
+                        context.read<PokemonShowBloc>().add(
+                              SearchShowsEvents(searchText: text),
+                            );
                       },
                       controller: textController,
                       decoration: InputDecoration(
@@ -68,7 +68,8 @@ class _HomePageState extends State<HomePage> {
                           color: Colors.black,
                           onPressed: () {
                             textController.clear();
-                            BlocProvider.of<PokemonShowBloc>(context)
+                            context
+                                .read<PokemonShowBloc>()
                                 .add(const SearchShowsEvents());
                           },
                           icon: const Icon(Icons.clear),

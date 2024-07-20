@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'pages/home_page.dart';
+import 'pages/login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,12 +16,12 @@ class MyApp extends StatelessWidget {
       title: 'Pokemon show',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.orangeAccent,
-          background: Colors.redAccent,
+          seedColor: Colors.redAccent,
+          brightness: Brightness.light,
         ),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: const LoginPage(),
     );
   }
 }

@@ -42,7 +42,7 @@ class _DetailsPageState extends State<DetailsPage> {
             );
           } else if (state is ShowsDetailsState) {
             show = state.show;
-            BlocProvider.of<PokemonShowBloc>(context).isFetching = false;
+            context.read<PokemonShowBloc>().isFetching = false;
           }
           return Scaffold(
             backgroundColor: Colors.redAccent[100],
