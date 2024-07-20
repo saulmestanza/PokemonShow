@@ -40,5 +40,16 @@ class PokemonShowBloc extends Bloc<PokemonShowEvent, PokemonShowState> {
         emit(ShowsErrorState(e.toString()));
       }
     });
+
+    on<LoadDetailShowEvent>((event, emit) async {
+      emit(ShowsLoadingState());
+      try {
+        emit(ShowsLoadingState());
+        final show = await pokemonShowRepository.getShowDetails(event.id);
+        emit(ShowsDetailsState(show));
+      } catch (e) {
+        emit(ShowsErrorState(e.toString()));
+      }
+    });
   }
 }

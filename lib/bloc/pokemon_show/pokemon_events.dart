@@ -21,3 +21,14 @@ class SearchShowsEvents extends PokemonShowEvent {
   @override
   List<Object?> get props => [];
 }
+
+class LoadDetailShowEvent extends PokemonShowEvent {
+  final int id;
+
+  const LoadDetailShowEvent({
+    required this.id,
+  });
+
+  @override
+  List<Object?> get props => [];
+}

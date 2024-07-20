@@ -5,6 +5,7 @@ import 'package:pokemon_show/bloc/pokemon_show/pokemon_bloc.dart';
 import 'package:pokemon_show/bloc/pokemon_show/pokemon_events.dart';
 import 'package:pokemon_show/bloc/pokemon_show/pokemon_states.dart';
 import 'package:pokemon_show/models/pokemon_show_model.dart';
+import 'package:pokemon_show/pages/details_page.dart';
 import 'package:pokemon_show/repositories/pokemon_show_repository.dart';
 
 class HomePage extends StatefulWidget {
@@ -53,9 +54,18 @@ class _HomePageState extends State<HomePage> {
                       },
                       controller: textController,
                       decoration: InputDecoration(
-                        labelText: "Buscar",
+                        enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black),
+                        ),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black),
+                        ),
                         hintText: "Buscar",
+                        hintStyle: const TextStyle(
+                          color: Colors.black,
+                        ),
                         suffixIcon: IconButton(
+                          color: Colors.black,
                           onPressed: () {
                             textController.clear();
                             BlocProvider.of<PokemonShowBloc>(context)
@@ -63,7 +73,10 @@ class _HomePageState extends State<HomePage> {
                           },
                           icon: const Icon(Icons.clear),
                         ),
-                        prefixIcon: const Icon(Icons.search),
+                        prefixIcon: const Icon(
+                          Icons.search,
+                          color: Colors.black,
+                        ),
                         border: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(
                             Radius.circular(5.0),
@@ -88,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                           return Stack(
                             children: [
                               Hero(
-                                tag: pokemonShow.show.id,
+                                tag: "${pokemonShow.show.id}",
                                 child: Container(
                                   width:
                                       MediaQuery.of(context).size.width / 1.13,
@@ -98,7 +111,7 @@ class _HomePageState extends State<HomePage> {
                                     image: DecorationImage(
                                       fit: BoxFit.cover,
                                       image: NetworkImage(
-                                        pokemonShow.show.image.medium,
+                                        pokemonShow.show.image.original,
                                       ),
                                     ),
                                   ),
@@ -122,7 +135,13 @@ class _HomePageState extends State<HomePage> {
                                 bottom: 30.0,
                                 child: InkWell(
                                   onTap: () {
-                                    //
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => DetailsPage(
+                                            id: pokemonShow.show.id),
+                                      ),
+                                    );
                                   },
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,

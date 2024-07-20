@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:pokemon_show/models/details_show_model.dart';
 import 'package:pokemon_show/models/pokemon_show_model.dart';
 
 @immutable
@@ -19,13 +20,23 @@ class ShowsLoadingState extends PokemonShowState {
 class ShowsLoadedState extends PokemonShowState {
   final List<PokemonShow> shows;
   ShowsLoadedState(this.shows);
+
   @override
   List<Object?> get props => [shows];
+}
+
+class ShowsDetailsState extends PokemonShowState {
+  final Show? show;
+  ShowsDetailsState(this.show);
+
+  @override
+  List<Object?> get props => [show];
 }
 
 class ShowsErrorState extends PokemonShowState {
   final String error;
   ShowsErrorState(this.error);
+
   @override
   List<Object?> get props => [error];
 }

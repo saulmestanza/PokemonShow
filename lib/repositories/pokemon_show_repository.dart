@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+import '../models/details_show_model.dart';
 import '../models/pokemon_show_model.dart';
 
 class PokemonShowRepository {
@@ -28,8 +29,8 @@ class PokemonShowRepository {
     return resp;
   }
 
-  Future<dynamic> getShowDetails(String id) async {
-    List<PokemonShow> resp = [];
+  Future<Show?> getShowDetails(int id) async {
+    Show? show;
     try {
       String url = "https://api.tvmaze.com/shows/$id";
       final respHttp = await client.get(
@@ -37,11 +38,11 @@ class PokemonShowRepository {
       );
       if (respHttp.statusCode == 200) {
         var body = const Utf8Decoder().convert(respHttp.bodyBytes);
-        resp = pokemonShowFromJson(body);
+        show = showFromJson(body);
       }
     } catch (e) {
       print(e.toString());
     }
-    return resp;
+    return show;
   }
 }

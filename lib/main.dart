@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Pokemon show',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.limeAccent,
+          seedColor: Colors.orangeAccent,
           background: Colors.redAccent,
         ),
         useMaterial3: true,
