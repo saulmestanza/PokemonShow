@@ -1,16 +1,19 @@
-# pokemon_show
+# Presentation
 
-A new Flutter project.
+I used `block state management`, although for a project of this size I would first consider something more suitable like `provider`, I wanted to use the `block` to demonstrate your knowledge.
 
-## Getting Started
+The packages I used were:
+`flutter_bloc` and `bloc_test` for state management and for testing
+`shared_preferences` to save `logged in` state after app reload
+`http` to make API calls
+`equatable` for comparison objects for state management
+`intl` and `intl_utils` to format date and generate int texts
+`flutter_widget_from_html` to display the html texts that the show api responded to
 
-This project is a starting point for a Flutter application.
+I first developed the list of Pokemon shows, i wanted to start with the more complex screens, i chose that layout, the vertical card layout, to show the most of the image. Trying to be minimalist by simply displaying the show name, status and release date.
 
-A few resources to get you started if this is your first Flutter project:
+I choose the show details screen so that the image is something like a header, and all the information can be scrolled behind it.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+As I finished getting started with the login screen, I did persistent login validation with shared preferences after a successful login. if you are logged in, continue; otherwise, you must enter credentials.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+I choose intl the text to have better support for other languages ​​in the future, and because as a small project that can grow it is better to start without having coded the text.
